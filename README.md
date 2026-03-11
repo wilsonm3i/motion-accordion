@@ -2,6 +2,10 @@
 
 `motion-accordion` is a React accordion component with built-in motion, polished default styles, and reduced-motion support.
 
+## Demo
+
+[https://motion-accordion.vercel.app/](https://motion-accordion.vercel.app/)
+
 ## Install
 
 ```bash
