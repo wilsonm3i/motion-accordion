@@ -1,0 +1,187 @@
+.motion-accordion {
+  --motion-accordion-radius: 12px;
+  --motion-accordion-surface: #f7f6f6;
+  --motion-accordion-text: #221d1d;
+  --motion-accordion-muted: #636161;
+  --motion-accordion-accent: #1a88f8;
+  --motion-accordion-focus-ring: #9898ff;
+  --motion-accordion-panel-duration: 320ms;
+  --motion-accordion-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-accordion-content-duration: 220ms;
+  --motion-accordion-content-delay: 80ms;
+  width: 100%;
+  color: var(--motion-accordion-text);
+}
+
+.motion-accordion__item {
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.motion-accordion__item:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.motion-accordion__item:has(.motion-accordion__trigger:focus-visible) {
+  outline: 2px solid var(--motion-accordion-focus-ring);
+  outline-offset: 2px;
+}
+
+.motion-accordion__surface {
+  border-radius: var(--motion-accordion-radius);
+  background: var(--motion-accordion-surface);
+}
+
+.motion-accordion__header {
+  margin: 0;
+}
+
+.motion-accordion__trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+  position: relative;
+  width: 100%;
+  padding: 10px 8px 4px 24px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.motion-accordion__trigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.motion-accordion__trigger::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 6px;
+}
+
+.motion-accordion__trigger:focus,
+.motion-accordion__trigger:focus-visible,
+.motion-accordion__trigger:focus-within {
+  outline: none;
+}
+
+.motion-accordion__title {
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.018em;
+}
+
+.motion-accordion__icon {
+  flex-shrink: 0;
+  color: var(--motion-accordion-accent);
+}
+
+.motion-accordion__panel {
+  min-width: 0;
+  overflow: hidden;
+  height: var(--accordion-panel-height);
+  transition: height var(--motion-accordion-panel-duration)
+    var(--motion-accordion-panel-ease);
+}
+
+.motion-accordion__panel[data-starting-style],
+.motion-accordion__panel[data-ending-style] {
+  height: 0;
+}
+
+.motion-accordion__content {
+  width: calc(100% - 60px);
+  padding: 0 8px 16px 24px;
+  color: var(--motion-accordion-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01125em;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--motion-accordion-content-duration) ease,
+    transform var(--motion-accordion-content-duration)
+      var(--motion-accordion-panel-ease);
+  transition-delay: var(--motion-accordion-content-delay);
+}
+
+.motion-accordion__panel[data-starting-style] .motion-accordion__content,
+.motion-accordion__panel[data-ending-style] .motion-accordion__content {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition-delay: 0ms;
+}
+
+.motion-accordion__paragraph {
+  margin: 0;
+  padding: 0 0 1.5rem;
+}
+
+.motion-accordion__content p,
+.motion-accordion__content ul,
+.motion-accordion__content ol {
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+
+.motion-accordion__content > :last-child,
+.motion-accordion__content p:last-child,
+.motion-accordion__content ul:last-child,
+.motion-accordion__content ol:last-child,
+.motion-accordion__paragraph:last-child {
+  padding-bottom: 0;
+}
+
+.motion-accordion__content ul,
+.motion-accordion__content ol {
+  padding-left: 1.25rem;
+}
+
+.motion-accordion__content a {
+  display: inline-block;
+  position: relative;
+  color: var(--motion-accordion-accent);
+  text-decoration: none;
+}
+
+.motion-accordion__content a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: opacity 100ms ease;
+}
+
+.motion-accordion__content a:hover::after {
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .motion-accordion__title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-accordion {
+    --motion-accordion-panel-duration: 0ms;
+    --motion-accordion-content-duration: 0ms;
+    --motion-accordion-content-delay: 0ms;
+  }
+
+  .motion-accordion__content a::after {
+    transition-duration: 0ms;
+  }
+}
