@@ -1,38 +1,16 @@
-# Motion Accordion
+# motion-accordion
 
-`MotionAccordion` is a small monorepo for an open-source React accordion component with built-in motion, polished default styles, and reduced-motion support.
+`motion-accordion` is a React accordion component with built-in motion, polished default styles, and reduced-motion support.
 
-## Packages
-
-- `motion-accordion`: the publishable React component package.
-- `docs`: the docs site and interactive playground.
-
-## Quick Start
-
-```bash
-pnpm install
-pnpm dev
-```
-
-The root dev script watches the component package in library mode and serves the docs app against the built package output.
-
-## Scripts
-
-- `pnpm dev`: run the library build watcher and docs app together.
-- `pnpm build`: build the package and the docs app.
-- `pnpm lint`: run ESLint across the workspace.
-- `pnpm typecheck`: run TypeScript checks across the workspace.
-- `pnpm test:unit`: run the package unit tests.
-- `pnpm test:e2e`: build the workspace and run Playwright against the docs site.
-- `pnpm changeset`: create a release note for the next version.
-- `pnpm version-packages`: apply pending Changesets.
-- `pnpm release`: build and publish through Changesets.
-
-## Package Usage
+## Install
 
 ```bash
 npm install motion-accordion
 ```
+
+This package expects `react` and `react-dom` to already exist in your app.
+
+## Usage
 
 ```tsx
 import type { CSSProperties } from "react";
@@ -65,12 +43,18 @@ export function Example() {
 }
 ```
 
-The component auto-loads its default styles. A direct CSS export also exists at `motion-accordion/styles.css`.
-Use `multiple` to keep more than one item open. Accent color and motion timing are customized with the CSS variables shown above.
+The default styles are loaded automatically when you import the component. You can also import the stylesheet directly from `motion-accordion/styles.css`.
 
-## Release Flow
+## Local Development
 
-1. Run `pnpm changeset` after changes that affect the package.
-2. Merge to `main`.
-3. The release workflow opens or updates a version PR.
-4. Merging that PR publishes the package with the configured `NPM_TOKEN`.
+```bash
+pnpm install
+pnpm build
+pnpm test
+```
+
+## Release
+
+- Run `pnpm changeset` after package-facing changes.
+- Merge to `main`.
+- The release workflow opens or updates the version PR and publishes with `NPM_TOKEN`.

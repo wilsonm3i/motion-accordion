@@ -7,4 +7,6 @@ test-results
 *.log
 *.tgz
 .vite
+apps/
+packages/
 oklch.fyi ▸ Convert/
